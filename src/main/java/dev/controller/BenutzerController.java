@@ -27,7 +27,14 @@ public class BenutzerController {
         }
         return this.benutzerRepository.findByid(id);
     }
-
+    
+    public Benutzer getBenutzerByEmail(@PathVariable String email) throws Exception{
+        if (this.benutzerRepository.findByEmail(email) == null) {
+            throw new Exception();
+        }
+        return this.benutzerRepository.findByEmail(email);
+    }
+    
     @PostMapping
     public void postBenutzer(@RequestBody Benutzer benutzer){
         this.benutzerRepository.save(benutzer);
